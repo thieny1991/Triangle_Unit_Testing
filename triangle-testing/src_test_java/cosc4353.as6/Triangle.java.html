@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Triangle.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">cosc4353.as6 (Nov 11, 2019 6:28:56 AM)</a> &gt; <a href="../../index.html" class="el_group">triangle-testing</a> &gt; <a href="../index.html" class="el_bundle">src/test/java</a> &gt; <a href="index.source.html" class="el_package">cosc4353.as6</a> &gt; <span class="el_source">Triangle.java</span></div><h1>Triangle.java</h1><pre class="source lang-java linenums">package cosc4353.as6;
+
+
+
+/*
+ * Description: This class provide methods that determine the type of the 
+ * triangle based on the triangle sides' length
+ * @author nguyen
+ * @version 090519
+ */
+import java.io.IOException;
+import java.lang.Math;
+public class Triangle {
+	//Declare variable
+	private double side1;
+	private double side2;
+	private double side3;
+	
+	/**
+	 * Constructor
+	 */
+<span class="fc" id="L22">	public Triangle(double s1, double s2, double s3) {</span>
+<span class="fc" id="L23">		setTriangleSides(s1,s2,s3);</span>
+<span class="fc" id="L24">	}</span>
+<span class="fc" id="L25">	public Triangle(Point A, Point B, Point C) {</span>
+<span class="fc" id="L26">		double d1=A.getDistance(B);</span>
+<span class="fc" id="L27">		double d2=A.getDistance(C);</span>
+<span class="fc" id="L28">		double d3=B.getDistance(C);</span>
+<span class="fc" id="L29">		setTriangleSides(d1,d2,d3);</span>
+<span class="fc" id="L30">	}</span>
+	/**
+	 * This method get the sides s1,s2,s3 and stores them to side1 field,
+	 * side2 field, and side3 field. 
+	 * @param s1
+	 * @param s2
+	 * @param s3
+	 * @ 
+	 */
+	public boolean setTriangleSides(double s1,double s2, double s3) {
+<span class="fc bfc" id="L40" title="All 2 branches covered.">		if(isValidTriangleSides(s1,s2,s3)){</span>
+<span class="fc" id="L41">		side1=s1;</span>
+<span class="fc" id="L42">		side2=s2;</span>
+<span class="fc" id="L43">		side3=s3;</span>
+<span class="fc" id="L44">		return true;</span>
+		}
+		else {
+<span class="fc" id="L47">			System.out.println(&quot;Invalid Triangle Sides&quot;);</span>
+<span class="fc" id="L48">			return false;</span>
+		}
+	}
+	/**
+	 * This method return an array of size 3. This array includes the
+	 * value  of side1, side2, side3 field
+	 * @return double[]
+	 */
+	public double[] getTriangleSides(){
+<span class="fc" id="L57">		double[] sides={side1,side2,side3};</span>
+<span class="fc" id="L58">		return sides;</span>
+	}
+	
+	/**
+	 * Description: This function determine the triangle's type.
+	 * @return String
+	 */
+	public String getTriangleTypes(){
+		//System.out.print(&quot;get triangle&quot;);
+<span class="fc" id="L67">		String triangleTypes=&quot;&quot;;</span>
+<span class="fc bfc" id="L68" title="All 2 branches covered.">		if(isEquilateralTriangle()) </span>
+<span class="fc" id="L69">			triangleTypes+=&quot;Equilateral&quot;;</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">		else if(isScaleneTriangle()){</span>
+<span class="fc" id="L71">			triangleTypes+=&quot;Scalene&quot;;</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">			if(isRightTriangle())</span>
+<span class="fc" id="L73">				triangleTypes+=&quot; &quot;+&quot;Right&quot;;</span>
+<span class="fc" id="L74">		}</span>
+		else{
+<span class="fc" id="L76">			triangleTypes+=&quot;Isosceles&quot;;</span>
+<span class="fc bfc" id="L77" title="All 2 branches covered.">			if(isRightTriangle())</span>
+<span class="fc" id="L78">				triangleTypes+=&quot; &quot;+&quot;Right&quot;;</span>
+		}
+<span class="fc" id="L80">		return (triangleTypes+&quot; &quot;+&quot;Triangle&quot;);</span>
+	}
+	 
+	/**
+	 * Description: This function checks whether or not this triangle 
+	 * is an Equilateral triangle. A triangle with tree congruent sides.  
+	 * @return boolean
+	 */
+	public boolean isEquilateralTriangle(){
+<span class="fc bfc" id="L89" title="All 6 branches covered.">		if(side1==side2&amp;side2==side3){</span>
+<span class="fc" id="L90">			return true;</span>
+		}
+<span class="fc" id="L92">		else return false;</span>
+	}
+	/**
+	 * Description: This function checks if the triangle is an Isosceles triangle.
+	 * A triangle with exactly two congruent sides
+	 * @return boolean
+	 */
+	public boolean isIsoscelesTriangle(){
+<span class="fc bfc" id="L100" title="All 8 branches covered.">		if((side1==side2&amp;&amp;side2!=side3)||(side1==side3&amp;&amp;side1!=side2)</span>
+<span class="fc bfc" id="L101" title="All 4 branches covered.">				||(side2==side3&amp;&amp;side1!=side2)){</span>
+<span class="fc" id="L102">			return true;</span>
+		}//end if
+		else 
+<span class="fc" id="L105">			return false;</span>
+	}
+	
+	
+	/**
+	 * Description: This function check if the triangle is an Scalene triangle
+	 * which is a triangle with no congruent sides 
+	 * @return
+	 */
+	public boolean isScaleneTriangle(){
+<span class="fc bfc" id="L115" title="All 6 branches covered.">		if(side1!=side2 &amp;&amp;side2!=side3 &amp;&amp; side1!=side3){</span>
+<span class="fc" id="L116">			return true;</span>
+		}
+		else{
+<span class="fc" id="L119">			return false;</span>
+		}
+	}
+	
+	/**
+	 * Description: This function determine if the triangle is a Right Triangle
+	 * @return boolean
+	 */
+	public boolean isRightTriangle(){
+<span class="fc bfc" id="L128" title="All 2 branches covered.">		if(followPythagorean(side1,side2,side3)</span>
+<span class="fc bfc" id="L129" title="All 2 branches covered.">				|| followPythagorean(side1,side3,side2)</span>
+<span class="fc bfc" id="L130" title="All 2 branches covered.">				|| followPythagorean(side2,side3,side1)){</span>
+<span class="fc" id="L131">			return true;</span>
+		}
+		else
+<span class="fc" id="L134">			return false;</span>
+	}
+	
+	
+	/**
+	 * Description: this function return true if a^2+b^2=c^2 with allowed error=0.1
+	 * the function will return true if absolute(a^2+b^2-c^2)&lt;0.1
+	 * @param a
+	 * @param b
+	 * @param c
+	 * @return boolean
+	 */
+	public static boolean followPythagorean(double a, double b, double c){
+<span class="fc" id="L147">		double error=Math.pow(a,2.0)+Math.pow(b,2.0)-Math.pow(c,2.0);</span>
+<span class="fc bfc" id="L148" title="All 2 branches covered.">		return (Math.abs(error)&lt;0.1);</span>
+	}
+	
+	public double getArea(){
+<span class="fc" id="L152">		double s=(side1+side2+side3)/2;//semi-primeter</span>
+		double area;
+<span class="fc" id="L154">		area=Math.sqrt(s*(s-side1)*(s-side2)*(s-side3));</span>
+<span class="fc" id="L155">		return area;</span>
+		
+	}
+	/**
+	 * Description: This function check if the triangle side's lengths are 
+	 * positive and  satisfy the Triangle Inequality Theorem and
+	 * @return boolean
+	 * @ 
+	 */
+	public static boolean isValidTriangleSides(double side1, double side2, double side3) {
+<span class="fc" id="L165">		boolean valid=true;</span>
+<span class="fc bfc" id="L166" title="All 6 branches covered.">		if(side1&lt;0||side2&lt;0||side3&lt;0){</span>
+<span class="fc" id="L167">			valid=false;</span>
+<span class="fc" id="L168">			System.out.println(&quot;Error! All the sides' length must be greater than 0.&quot;);</span>
+			//System.out.println();
+<span class="fc" id="L170">		}</span>
+<span class="fc bfc" id="L171" title="All 6 branches covered.">		else if((side1+side2)&lt;=side3||(side1+side3)&lt;=side2||(side2+side3)&lt;=side1){</span>
+<span class="fc" id="L172">			valid=false;</span>
+<span class="fc" id="L173">			System.out.println(&quot;Error! Violate the Triangle Inequality Theorem.&quot;);</span>
+		}
+<span class="fc" id="L175">		return valid;</span>
+	}
+}
+	
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>cosc4353.as6 (Nov 11, 2019 6:28:56 AM)</div></body></html>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>PointTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">cosc4353.as6 (Nov 11, 2019 6:28:56 AM)</a> &gt; <a href="../../index.html" class="el_group">triangle-testing</a> &gt; <a href="../index.html" class="el_bundle">src/test/java</a> &gt; <a href="index.source.html" class="el_package">cosc4353.as6</a> &gt; <span class="el_source">PointTest.java</span></div><h1>PointTest.java</h1><pre class="source lang-java linenums">package cosc4353.as6;
+
+import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.text.DecimalFormat;
+
+import org.junit.Test;
+
+<span class="fc" id="L10">public class PointTest {</span>
+	@Test
+	public void getCoordination() throws AssertionError{
+<span class="fc" id="L13">		Point O=new Point();</span>
+<span class="fc" id="L14">		O.setX(1);</span>
+<span class="fc" id="L15">		O.setY(1);</span>
+<span class="fc" id="L16">		assertEquals(O.getX(),1);</span>
+<span class="fc" id="L17">	}</span>
+	@Test
+	public void distanceOfTwoPoints_Test1() throws AssertionError{
+<span class="fc" id="L20">		Point p1= new Point(4,3);</span>
+<span class="fc" id="L21">		Point p2 = new Point( 3, -2);</span>
+<span class="fc" id="L22">		DecimalFormat df = new DecimalFormat(&quot;0.0000&quot;);</span>
+<span class="fc" id="L23">		double compareResult=Double.parseDouble(df.format(p1.getDistance(p2)));//System.out.println(Double.parseDouble(df.format(p1.getDistance(p2))));</span>
+<span class="fc" id="L24">		assertEquals(compareResult,5.0990);</span>
+<span class="fc" id="L25">	}</span>
+	
+	@Test
+	public void distanceOfTwoPoints_Test2() throws AssertionError{
+<span class="fc" id="L29">		Point p1= new Point(1,2);</span>
+<span class="fc" id="L30">		Point p2 = new Point( 5, 5);</span>
+<span class="fc" id="L31">		DecimalFormat df = new DecimalFormat(&quot;0.0000&quot;);</span>
+<span class="fc" id="L32">		double compareResult=Double.parseDouble(df.format(p1.getDistance(p2)));</span>
+<span class="fc" id="L33">		assertEquals(compareResult,5.0000);</span>
+<span class="fc" id="L34">	}</span>
+	
+	@Test
+	public void createTriangleByPoints_Test1() throws IllegalArgumentException {
+<span class="fc" id="L38">		Point A= new Point(1,2);</span>
+<span class="fc" id="L39">		Point B = new Point(2,2);</span>
+<span class="fc" id="L40">		Point C = new Point(6,3);</span>
+<span class="fc" id="L41">		Triangle ta = new Triangle(A,B,C);</span>
+<span class="fc" id="L42">		assertTrue(ta.getTriangleTypes().toLowerCase().contains(&quot;scalene&quot;));</span>
+<span class="fc" id="L43">	}</span>
+	
+	@Test
+	public void createTriangleByPoints_Test2() throws IllegalArgumentException {
+<span class="fc" id="L47">		Point A= new Point(-1,5);</span>
+<span class="fc" id="L48">		Point B = new Point(4,0);</span>
+<span class="fc" id="L49">		Point C = new Point(6,6);</span>
+<span class="fc" id="L50">		Triangle ta = new Triangle(A,B,C);</span>
+<span class="fc" id="L51">		assertTrue(ta.getTriangleTypes().toLowerCase().contains(&quot;isosceles&quot;));</span>
+<span class="fc" id="L52">	}</span>
+	
+	@Test
+	public void createTriangleByPoints_Test3() throws IllegalArgumentException {
+<span class="fc" id="L56">		Point A= new Point(0,0);</span>
+<span class="fc" id="L57">		Point B = new Point(0,10);</span>
+<span class="fc" id="L58">		Point C = new Point(10,0);</span>
+<span class="fc" id="L59">		Triangle ta = new Triangle(A,B,C);</span>
+<span class="fc" id="L60">		assertTrue(ta.getTriangleTypes().toLowerCase().contains(&quot;right&quot;));</span>
+<span class="fc" id="L61">	}</span>
+	
+	@Test
+	public void createTriangleByPoints_Test4() throws IllegalArgumentException {
+<span class="fc" id="L65">		Point A= new Point(-3,0);</span>
+<span class="fc" id="L66">		Point B = new Point(3,0);</span>
+<span class="fc" id="L67">		Point C = new Point(0,3*Math.sqrt(3));</span>
+<span class="fc" id="L68">		Triangle ta = new Triangle(A,B,C);</span>
+<span class="fc" id="L69">		assertTrue(ta.getTriangleTypes().toLowerCase().contains(&quot;equilateral&quot;));</span>
+<span class="fc" id="L70">	}</span>
+	@Test
+	public void createTriangleByPoints_Test5() throws IllegalArgumentException {
+<span class="fc" id="L73">		Point A= new Point(0,0);</span>
+<span class="fc" id="L74">		Point B = new Point(0,3);</span>
+<span class="fc" id="L75">		Point C = new Point(4,0);</span>
+<span class="fc" id="L76">		Triangle ta = new Triangle(A,B,C);</span>
+<span class="fc" id="L77">		assertTrue(ta.getTriangleTypes().toLowerCase().contains(&quot;right&quot;));</span>
+<span class="fc" id="L78">	}</span>
+	
+	@Test
+	public void createTriangleByPoints_Test6() throws IllegalArgumentException {
+<span class="fc" id="L82">		Point A= new Point(2,2);</span>
+<span class="fc" id="L83">		Point B = new Point(6,2);</span>
+<span class="fc" id="L84">		Point C = new Point(4,8);</span>
+<span class="fc" id="L85">		Triangle ta = new Triangle(A,B,C);</span>
+<span class="fc" id="L86">		assertTrue(ta.getTriangleTypes().toLowerCase().contains(&quot;isosceles&quot;));</span>
+<span class="fc" id="L87">	}</span>
+	
+
+
+	
+	@Test
+	public void triangleAreaByPoints_Test1() throws IllegalArgumentException {
+<span class="fc" id="L94">		Point A= new Point(-1,5);</span>
+<span class="fc" id="L95">		Point B = new Point(4,0);</span>
+<span class="fc" id="L96">		Point C = new Point(6,6);</span>
+<span class="fc" id="L97">		Triangle ta = new Triangle(A,B,C);</span>
+<span class="fc" id="L98">		DecimalFormat df = new DecimalFormat(&quot;0.000&quot;);</span>
+<span class="fc" id="L99">		double commpareResult=Double.parseDouble(df.format(ta.getArea()));</span>
+<span class="fc" id="L100">		assertEquals(commpareResult,20.000);</span>
+		
+<span class="fc" id="L102">	}</span>
+	
+	@Test
+	public void triangleAreaByPoints_Test2() throws IllegalArgumentException {
+<span class="fc" id="L106">		Point A= new Point(-3,0);</span>
+<span class="fc" id="L107">		Point B = new Point(3,0);</span>
+<span class="fc" id="L108">		Point C = new Point(0,3*Math.sqrt(3));</span>
+<span class="fc" id="L109">		Triangle ta = new Triangle(A,B,C);</span>
+<span class="fc" id="L110">		DecimalFormat df = new DecimalFormat(&quot;0.000&quot;);</span>
+<span class="fc" id="L111">		double commpareResult=Double.parseDouble(df.format(ta.getArea()));</span>
+<span class="fc" id="L112">		assertEquals(commpareResult,15.588);</span>
+<span class="fc" id="L113">	}</span>
+	
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>cosc4353.as6 (Nov 11, 2019 6:28:56 AM)</div></body></html>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>TriangleTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">cosc4353.as6 (Nov 11, 2019 6:28:56 AM)</a> &gt; <a href="../../index.html" class="el_group">triangle-testing</a> &gt; <a href="../index.html" class="el_bundle">src/test/java</a> &gt; <a href="index.source.html" class="el_package">cosc4353.as6</a> &gt; <span class="el_source">TriangleTest.java</span></div><h1>TriangleTest.java</h1><pre class="source lang-java linenums">package cosc4353.as6;
+
+import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+
+import org.junit.Test;
+
+<span class="fc" id="L8">public class TriangleTest {</span>
+	
+	@Test
+	public void createTriangleBySides_Tests1() throws Exception{
+<span class="fc" id="L12">		Triangle ta = new Triangle(3,4,5);</span>
+<span class="fc" id="L13">		assertTrue(ta.getTriangleTypes().toLowerCase().contains(&quot;scalene&quot;));</span>
+<span class="fc" id="L14">	}</span>
+	
+	@Test
+	public void createTriangleBySides_Test2() throws Exception{
+<span class="fc" id="L18">		Triangle ta = new Triangle(7,4,7);</span>
+<span class="fc" id="L19">		assertTrue(ta.isIsoscelesTriangle());</span>
+<span class="fc" id="L20">	}</span>
+	
+	@Test
+	public void createTriangleBySides_Test3() throws Exception{
+<span class="fc" id="L24">		Triangle ta = new Triangle(6,6,6);</span>
+<span class="fc" id="L25">		assertTrue(ta.getTriangleTypes().toLowerCase().contains(&quot;equilateral&quot;));</span>
+<span class="fc" id="L26">	}</span>
+	
+	@Test
+	public void createTriangleBySides_Test4() throws Exception{
+<span class="fc" id="L30">		Triangle ta = new Triangle(3,4,5);</span>
+<span class="fc" id="L31">		assertTrue(ta.getTriangleTypes().toLowerCase().contains(&quot;right&quot;));</span>
+<span class="fc" id="L32">	}</span>
+	 
+	@Test
+	public void createTriangleBySides_Test5() throws Exception{
+<span class="fc" id="L36">		Triangle ta = new Triangle(1,1,Math.sqrt(2));</span>
+<span class="fc" id="L37">		assertTrue(ta.getTriangleTypes().toLowerCase().contains(&quot;right&quot;));</span>
+<span class="fc" id="L38">	}</span>
+	
+	
+	@Test
+	public void createTriangleBySides_Test6() throws Exception{
+<span class="fc" id="L43">		Triangle ta = new Triangle(4.2,4.6,6.1);</span>
+<span class="fc" id="L44">		assertTrue(ta.getTriangleTypes().toLowerCase().contains(&quot;scalene&quot;));</span>
+<span class="fc" id="L45">	} </span>
+	@Test
+	public void createTriangleBySides_Test7() throws Exception{
+<span class="fc" id="L48">		Triangle ta = new Triangle(4,7,7);</span>
+<span class="fc" id="L49">		assertTrue(ta.isIsoscelesTriangle());</span>
+<span class="fc" id="L50">	}</span>
+	
+	@Test
+	public void createTriangleBySides_Test8() throws Exception{
+<span class="fc" id="L54">		Triangle ta = new Triangle(7,7,4);</span>
+<span class="fc" id="L55">		assertTrue(ta.isIsoscelesTriangle());</span>
+<span class="fc" id="L56">	}</span>
+	
+	
+	
+	@Test
+	public void createTriangleBySides_Test9() throws Exception{
+<span class="fc" id="L62">		Triangle ta = new Triangle(1,Math.sqrt(2),1);</span>
+<span class="fc" id="L63">		assertTrue(ta.getTriangleTypes().toLowerCase().contains(&quot;right&quot;));</span>
+<span class="fc" id="L64">	}</span>
+	@Test
+	public void createTriangleBySides_Test10() throws Exception{
+<span class="fc" id="L67">		Triangle ta = new Triangle(Math.sqrt(2),1,1);</span>
+<span class="fc" id="L68">		assertTrue(ta.getTriangleTypes().toLowerCase().contains(&quot;right&quot;));</span>
+<span class="fc" id="L69">	}</span>
+	@Test
+	public void createTriangleBySides_Test11() throws Exception{
+<span class="fc" id="L72">		Triangle ta = new Triangle(4.2,4.6,6.1);</span>
+<span class="fc" id="L73">		assertFalse(ta.isIsoscelesTriangle());</span>
+<span class="fc" id="L74">	} </span>
+	@Test
+	public void createTriangleBySides_Test12() throws Exception{
+<span class="fc" id="L77">		Triangle ta = new Triangle(7,7,7);</span>
+<span class="fc" id="L78">		assertFalse(ta.isIsoscelesTriangle());</span>
+<span class="fc" id="L79">	}</span>
+	@Test
+	public void createTriangleBySides_Test13() throws Exception{
+<span class="fc" id="L82">		Triangle ta = new Triangle(3,7,6);</span>
+<span class="fc" id="L83">		assertFalse(ta.isIsoscelesTriangle());</span>
+<span class="fc" id="L84">	}</span>
+	@Test
+	public void followPythegorean_Test1() {
+		
+<span class="fc" id="L88">		assertTrue(Triangle.followPythagorean(3,4,5)==true);</span>
+<span class="fc" id="L89">	}</span>
+	
+	@Test
+	public void getTriangleSides_Test1() throws AssertionError{
+<span class="fc" id="L93">		Triangle ta = new Triangle(7,7,4);</span>
+<span class="fc" id="L94">		double testingSides[]= {7,7,4};</span>
+<span class="fc" id="L95">		double sides[]=ta.getTriangleSides();</span>
+<span class="fc" id="L96">		assertArrayEquals(testingSides,sides);</span>
+		
+<span class="fc" id="L98">	}</span>
+	
+	@Test
+	public void setTriangleSides_Test1(){
+<span class="fc" id="L102">		Triangle ta = new Triangle(3,4,5);</span>
+<span class="fc" id="L103">		assertTrue(ta.setTriangleSides(6,8,10));</span>
+<span class="fc" id="L104">	}</span>
+	@Test
+	public void setTriangleSides_Test2(){
+<span class="fc" id="L107">		Triangle ta = new Triangle(3,4,5);</span>
+<span class="fc" id="L108">		assertFalse(ta.setTriangleSides(-2,8,10));</span>
+<span class="fc" id="L109">	}</span>
+	
+	@Test
+	public void isValidTriangleSides_Test1(){
+<span class="fc" id="L113">		assertTrue(Triangle.isValidTriangleSides(2,3,2));</span>
+<span class="fc" id="L114">	}</span>
+	
+	@Test
+	public void isValidTriangleSides_Test2(){
+<span class="fc" id="L118">			assertFalse(Triangle.isValidTriangleSides(-2,3,2));</span>
+	
+<span class="fc" id="L120">	}</span>
+	
+	@Test
+	public void isValidTriangleSides_Test3(){
+<span class="fc" id="L124">			assertFalse(Triangle.isValidTriangleSides(2,-3,2));</span>
+	
+<span class="fc" id="L126">	}</span>
+	@Test
+	public void isValidTriangleSides_Test4(){
+<span class="fc" id="L129">			assertFalse(Triangle.isValidTriangleSides(2,3,-2));</span>
+	
+<span class="fc" id="L131">	}</span>
+	@Test
+	public void isValidTriangleSides_Test5(){
+<span class="fc" id="L134">			assertFalse(Triangle.isValidTriangleSides(2,4,6));</span>
+	
+<span class="fc" id="L136">	}</span>
+	@Test
+	public void isValidTriangleSides_Test6(){
+<span class="fc" id="L139">			assertFalse(Triangle.isValidTriangleSides(2,6,4));</span>
+	
+<span class="fc" id="L141">	}</span>
+	@Test
+	public void isValidTriangleSides_Test7(){
+<span class="fc" id="L144">			assertFalse(Triangle.isValidTriangleSides(6,3,1));</span>
+	
+<span class="fc" id="L146">	}</span>
+	
+	
+	
+	
+	
+
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>cosc4353.as6 (Nov 11, 2019 6:28:56 AM)</div></body></html>
